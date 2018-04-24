@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Palindrome;
 
 namespace CodeChallengeOne
@@ -12,7 +13,8 @@ namespace CodeChallengeOne
             Class1 pd = new Class1(rc);
             bool result = pd.PalindromeStringCheck(rc);
 
-            Console.WriteLine(result);
+
+            Console.WriteLine("The string " + rc + " is a Palindrome? " + result);
         }
     }
 }

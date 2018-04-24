@@ -5,6 +5,7 @@ namespace Palindrome
     public class Class1
     {
         string sStringToCheck;
+        string sComparisonString;
         bool result;
 
         public string StringToCheck { get; set; }
@@ -21,25 +22,29 @@ namespace Palindrome
 
         public bool PalindromeStringCheck(string _sStringToCheck)
         {
-            string saComparisonString;
-            saComparisonString = _sStringToCheck;
+            int iUpperBound = sStringToCheck.Length-1;
+            int iLowerBound;
 
-            Console.WriteLine("Comparison String: " + saComparisonString);
-
-            for (int i = _sStringToCheck.Length-1; i >= 0; i--)
+            for (iLowerBound = 0; iLowerBound <= iUpperBound; iLowerBound++)
             {
-                if(saComparisonString[i] == sStringToCheck[i])
+                if (_sStringToCheck[iLowerBound].Equals(_sStringToCheck[iUpperBound]))
                 {
-                    Console.WriteLine(saComparisonString[i]);
-                    result = true;
+                    if (iUpperBound == iLowerBound)
+                    {
+                        iUpperBound--;
+                        result = true;
+                    }
+                    iUpperBound--;
+                    continue;
                 }
-                else if(saComparisonString[i] != sStringToCheck[i])
+                else
                 {
+                    iUpperBound--;
                     result = false;
                     break;
                 }
             }
-
+            
             return result;
         }
     }
