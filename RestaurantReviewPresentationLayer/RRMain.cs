@@ -29,6 +29,7 @@ namespace RestaurantReviewPresentationLayer
                 Console.WriteLine("Do you wanna continue? (y for yes / n for no)");
                 iKeepOn = Console.ReadLine();
             }
+
         }
     }
 }

@@ -46,11 +46,16 @@ namespace RestaurantReviewBuisnessLayer
                 Console.WriteLine("Please enter the address of the Restaurant you would like to write a review for");
                 string sAddressInput = Console.ReadLine();
                 Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant");
-                decimal dRatingInput = Console.Read();
+                string sRvRatingInput = Console.ReadLine();
+                decimal dRvRatingInput = decimal.Parse(sRvRatingInput);
                 Console.WriteLine("Please enter a brief rating summary for the Restaurant");
                 string sRatingSummaryInput = Console.ReadLine();
+                Console.WriteLine("Please enter the primary key for the Restaurant");
+                string sForeignKey = Console.ReadLine();
+                int iForeignKey = int.Parse(sForeignKey);
 
-                RestaurantData.InsertReviewIntoDB(sRestaurantInput, sAddressInput, dRatingInput, sRatingSummaryInput);
+                RestaurantData.InsertReviewIntoDB(sRestaurantInput, sAddressInput, dRvRatingInput,
+                    sRatingSummaryInput, iForeignKey);
             }
             else if(_iUserOption == "4")
             {
@@ -59,7 +64,8 @@ namespace RestaurantReviewBuisnessLayer
                 Console.WriteLine("Please enter the address of the Restaurant you would like to add");
                 string sAddressInput = Console.ReadLine();
                 Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant");
-                decimal dRatingInput = Console.Read();
+                string sInput = Console.ReadLine();
+                decimal dRatingInput = decimal.Parse(sInput);
 
                 RestaurantData.InsertRestaurantIntoDB(sRestaurantInput, sAddressInput, dRatingInput);
             }
@@ -83,7 +89,10 @@ namespace RestaurantReviewBuisnessLayer
                 Console.WriteLine("Please enter the address of the Restaurant you would like to delete");
                 string sAddressInput = Console.ReadLine();
                 Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant you would like to delete");
-                decimal dRatingInput = Console.Read();
+                string sRatingInput = Console.ReadLine();
+                decimal dRatingInput = decimal.Parse(sRatingInput);
+
+                RestaurantData.DeleteRestaurantFromDB(sRestaurantInput, sAddressInput, dRatingInput);
             }
         }
     }

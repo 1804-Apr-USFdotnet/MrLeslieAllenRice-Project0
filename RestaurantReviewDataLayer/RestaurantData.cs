@@ -5,9 +5,11 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Runtime.InteropServices;
+using System.Data.Entity.Infrastructure;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Data.Entity.Core.Objects.Object;
 
 namespace RestaurantDataLayer
 {
@@ -44,7 +46,6 @@ namespace RestaurantDataLayer
         // method to get reviews
         public static List<Review> ShowRestaurantReviews(string _sRestaurant)
         {
-            //Restaurant localRestaurant = new Restaurant();
             List<Review> lsReviews = new List<Review>();
             try
             {
@@ -74,30 +75,37 @@ namespace RestaurantDataLayer
         {
             try
             {
-                RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
+                RestaurantReviewP0Entities db;
 
-                Restaurant restaurant = new Restaurant()
+                using(db = new RestaurantReviewP0Entities())
                 {
-                    rName = sRName,
-                    rAddress = sRAddress,
-                    rAvgRating = dAvgRating
-                };
+                    RestaurantDataLayer.Restaurant restaurant = new RestaurantDataLayer.Restaurant()
+                    {
+                        rName = sRName,
+                        rAddress = sRAddress,
+                        rAvgRating = dAvgRating
+                    };
 
-                db.Restaurants.Add(restaurant);
-                db.SaveChanges();
-                Console.Read();
+                    db.Restaurants.Add(restaurant);
+                    db.SaveChanges();
+                }
+            }
+            catch (DbUpdateException se)
+            {
+                Debug.WriteLine("Exception handled:\n" + se.Message);
+                Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
+                Debug.WriteLine(se.InnerException.Message);
+                Debug.WriteLine(se.InnerException);
             }
             catch (SqlException se)
             {
                 Debug.WriteLine("Exception handled:\n" + se.Message);
                 Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
-                Console.Read();
             }
             catch (DbException de)
             {
                 Debug.WriteLine("Exception handled:\n" + de.Message);
                 Debug.WriteLine("Stack Trace:\n" + de.StackTrace);
-                Console.Read();
             }
             catch (ExternalException ee)
             {
@@ -116,24 +124,34 @@ namespace RestaurantDataLayer
             }
         }
 
-        public static void InsertReviewIntoDB(string sRName, string sRvAddress, decimal dRvRating, string sRvSummary)
+        public static void InsertReviewIntoDB(string sRName, string sRvAddress, decimal dRvRating,
+            string sRvSummary, int iForeignKey)
         {
             try
             {
-                RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
+                RestaurantReviewP0Entities db;
 
-                Review review = new Review()
+                using (db = new RestaurantReviewP0Entities())
                 {
-                    rName = sRName,
-                    rAddress = sRvAddress,
-                    rRating = dRvRating,
-                    rSummary = sRvSummary
-                };
+                    RestaurantDataLayer.Review review = new RestaurantDataLayer.Review()
+                    {
+                        rName = sRName,
+                        rAddress = sRvAddress,
+                        rRating = dRvRating,
+                        rSummary = sRvSummary,
+                        fk_rId = iForeignKey
+                    };
 
-                db.Reviews.Add(review);
-                db.SaveChanges();
-               
-                
+                    db.Reviews.Add(review);
+                    db.SaveChanges();
+                }
+            }
+            catch (DbUpdateException se)
+            {
+                Debug.WriteLine("Exception handled:\n" + se.Message);
+                Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
+                Debug.WriteLine(se.InnerException.Message);
+                Debug.WriteLine(se.InnerException);
             }
             catch (SqlException se)
             {
@@ -163,21 +181,24 @@ namespace RestaurantDataLayer
         }
 
         // method to delete record into database
-        public static void DeleteRestaurantFromDB(string sRName, string sRAddress, decimal dRating)
+        public static void DeleteRestaurantFromDB(string sRName, string sRAddress, decimal dAvgRating)
         {
             try
             {
-                RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
+                RestaurantReviewP0Entities db;
 
-                Restaurant restaurant = new Restaurant()
+                using (db = new RestaurantReviewP0Entities())
                 {
-                    rName = sRName,
-                    rAddress = sRAddress,
-                    rAvgRating = dRating
-                };
-
-                db.Restaurants.Remove(restaurant);
-                db.SaveChanges();
+                    RestaurantDataLayer.Restaurant restaurant = new RestaurantDataLayer.Restaurant()
+                    {
+                        rName = sRName,
+                        rAddress = sRAddress,
+                        rAvgRating = dAvgRating
+                    };
+                    
+                    db.Restaurants.Remove(restaurant);
+                    db.SaveChanges();
+                }
             }
             catch (SqlException se)
             {
