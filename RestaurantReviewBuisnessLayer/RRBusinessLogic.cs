@@ -41,31 +41,50 @@ namespace RestaurantReviewBuisnessLayer
             }
             else if(_iUserOption == "3")
             {
+                Console.WriteLine("Please enter the Restaurant you would like to write a review for");
+                string sRestaurantInput = Console.ReadLine();
+                Console.WriteLine("Please enter the address of the Restaurant you would like to write a review for");
+                string sAddressInput = Console.ReadLine();
+                Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant");
+                decimal dRatingInput = Console.Read();
+                Console.WriteLine("Please enter a brief rating summary for the Restaurant");
+                string sRatingSummaryInput = Console.ReadLine();
 
+                RestaurantData.InsertReviewIntoDB(sRestaurantInput, sAddressInput, dRatingInput, sRatingSummaryInput);
             }
             else if(_iUserOption == "4")
             {
+                Console.WriteLine("Please enter the Restaurant you would like to add");
+                string sRestaurantInput = Console.ReadLine();
+                Console.WriteLine("Please enter the address of the Restaurant you would like to add");
+                string sAddressInput = Console.ReadLine();
+                Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant");
+                decimal dRatingInput = Console.Read();
 
+                RestaurantData.InsertRestaurantIntoDB(sRestaurantInput, sAddressInput, dRatingInput);
             }
             else if(_iUserOption == "5")
             {
+                Console.WriteLine("Please enter the Restaurant of the review you would like to delete");
+                string sRestaurantInput = Console.ReadLine();
+                Console.WriteLine("Please enter the address of the Restaurant review you would like to delete");
+                string sAddressInput = Console.ReadLine();
+                Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant review you would like to delete");
+                decimal dRatingInput = Console.Read();
+                Console.WriteLine("Please enter the rating summary for the Restaurant review you would like to delete");
+                string sRatingSummaryInput = Console.ReadLine();
 
+                RestaurantData.DeleteReviewFromDB(sRestaurantInput, sAddressInput, dRatingInput, sRatingSummaryInput);
             }
             else if(_iUserOption == "6")
             {
-
+                Console.WriteLine("Please enter the Restaurant you would like to delete");
+                string sRestaurantInput = Console.ReadLine();
+                Console.WriteLine("Please enter the address of the Restaurant you would like to delete");
+                string sAddressInput = Console.ReadLine();
+                Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant you would like to delete");
+                decimal dRatingInput = Console.Read();
             }
-            else
-            {
-
-            }
-        }
-
-        public static void DisplayRestaurantDetails(Restaurant r)
-        {
-            Console.WriteLine(r.sName);
-            Console.WriteLine("Address: " + r.sAddress);
-            Console.WriteLine("Average rating: " + r.dAvgRating);
         }
     }
 }

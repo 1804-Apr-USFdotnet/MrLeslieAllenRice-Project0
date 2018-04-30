@@ -7,22 +7,25 @@ namespace RestaurantReviewBuisnessLayer
     public class Review
     {
         public string sRestaurantName;
+        public string sReviewAddress;
         public string sReviewSummary;
-        public double dRating;
+        public decimal dRating;
 
         public Review()
         {
             sRestaurantName = null;
+            sReviewAddress = null;
+            dRating = 0.0m;
             sReviewSummary = null;
-            dRating = 0.0;
         }
 
-        public Review(string _sRestaurantName, string _sReviewSummary,
-                                   double _dRating)
+        public Review(string _sRestaurantName, string _sReviewAddress, decimal _dRating,
+                                    string _sReviewSummary)
         {
             sRestaurantName = _sRestaurantName;
-            sReviewSummary = _sReviewSummary;
+            sReviewAddress = _sReviewAddress;
             dRating = _dRating;
+            sReviewSummary = _sReviewSummary;
         }
     }
 }

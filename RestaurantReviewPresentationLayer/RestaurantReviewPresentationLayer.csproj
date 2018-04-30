@@ -62,6 +62,10 @@
       <Project>{9c306e35-535c-41ea-916a-61e012b1d523}</Project>
       <Name>RestaurantReviewBuisnessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RestaurantReviewDataLayer\RestaurantReviewDataLayer.csproj">
+      <Project>{4af3bfbd-f83a-4304-8d02-4fbf2a674495}</Project>
+      <Name>RestaurantReviewDataLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RestaurantReviewBuisnessLayer;
+using RestaurantDataLayer;
 
 namespace RestaurantReviewPresentationLayer
 {
@@ -11,19 +12,23 @@ namespace RestaurantReviewPresentationLayer
     {
         static void Main(string[] args)
         {
-            int iKeepOn = 0;
+            string iKeepOn = "y";
             RestaurantReviewDisplay.DisplayMenu();
             string iUserInput = Console.ReadLine();
-            //Console.WriteLine(iUserInput);
             RRBusinessLogic.ProgramLogic(iUserInput);
 
-            if(iKeepOn == 0)
+            Console.WriteLine("Do you wanna continue? (y for yes / n for no)");
+            iKeepOn = Console.ReadLine();
+
+            while (iKeepOn == "y")
             {
-                Console.WriteLine("Do you wanna continue?");
-                Console.Read();
+                RestaurantReviewDisplay.DisplayMenu();
+                iUserInput = Console.ReadLine();
+                RRBusinessLogic.ProgramLogic(iUserInput);
+
+                Console.WriteLine("Do you wanna continue? (y for yes / n for no)");
+                iKeepOn = Console.ReadLine();
             }
-            
-            
         }
     }
 }

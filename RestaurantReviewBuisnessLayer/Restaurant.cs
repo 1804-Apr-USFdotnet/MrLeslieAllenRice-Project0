@@ -10,17 +10,17 @@ namespace RestaurantReviewBuisnessLayer
 
         public string sName;
         public string sAddress;
-        public double dAvgRating;
+        public decimal dAvgRating;
 
         public Restaurant()
         {
             sName = null;
             sAddress = null;
-            dAvgRating = 0.0;
+            dAvgRating = 0.0m;
             lsRestaurantReview = new List<Review>();
         }
 
-        public Restaurant(string _sName, string _sAddress, double _dAvgRating)
+        public Restaurant(string _sName, string _sAddress, decimal _dAvgRating)
         {
             this.sName = _sName;
             this.sAddress = _sAddress;
@@ -36,8 +36,8 @@ namespace RestaurantReviewBuisnessLayer
 
         private void calcAverageRating()
         {
-            double total = 0;
-            double noOfReviews = 0;
+            decimal total = 0;
+            decimal noOfReviews = 0;
             foreach(Review rr in lsRestaurantReview)
             {
                 noOfReviews++;

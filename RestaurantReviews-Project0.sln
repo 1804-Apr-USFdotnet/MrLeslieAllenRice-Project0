@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRestaurantReviewBusines
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReviewBuisnessLayer", "RestaurantReviewBuisnessLayer\RestaurantReviewBuisnessLayer.csproj", "{9C306E35-535C-41EA-916A-61E012B1D523}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReviewPresentationLayer", "ConsoleApp1\RestaurantReviewPresentationLayer.csproj", "{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReviewDataLayer", "RestaurantReviewDataLayer\RestaurantReviewDataLayer.csproj", "{4AF3BFBD-F83A-4304-8D02-4FBF2A674495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReviewDataLayer", "ClassLibrary1\RestaurantReviewDataLayer.csproj", "{4AF3BFBD-F83A-4304-8D02-4FBF2A674495}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantReviewPresentationLayer", "RestaurantReviewPresentationLayer\RestaurantReviewPresentationLayer.csproj", "{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{9C306E35-535C-41EA-916A-61E012B1D523}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C306E35-535C-41EA-916A-61E012B1D523}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C306E35-535C-41EA-916A-61E012B1D523}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AF3BFBD-F83A-4304-8D02-4FBF2A674495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4AF3BFBD-F83A-4304-8D02-4FBF2A674495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AF3BFBD-F83A-4304-8D02-4FBF2A674495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AF3BFBD-F83A-4304-8D02-4FBF2A674495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB8E6001-555F-4239-8AAA-5715D7BA8E9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
