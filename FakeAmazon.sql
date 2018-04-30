@@ -54,8 +54,12 @@
 --values(2, 3)
 
 -- Add Tina Smith
-insert into Customer(custFirstName, custLastName, cardNumber)
-values('Tina', 'Smith', 987065431)
+--insert into Customer(custFirstName, custLastName, cardNumber)
+--values('Tina', 'Smith', 987065431)
+
+--insert into Orders(fk_custId, fk_productId)
+--values(4,1)
 
 --select * from Customer
 --select * from Product
+select * from Orders where fk_custId=4
