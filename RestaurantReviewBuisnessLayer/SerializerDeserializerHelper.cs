@@ -24,15 +24,18 @@ namespace RestaurantReviewBuisnessLayer
             }
             catch (SerializationException se)
             {
-                Console.WriteLine("Exception handled: " + se);
+                Console.WriteLine("Exception handled:\n" + se.Message);
+                Console.WriteLine("Stack Trace:\n" + se.StackTrace);
             }
             catch(SystemException syse)
             {
-                Console.WriteLine("Exception handled: " + syse);
+                Console.WriteLine("Exception handled:\n" + syse.Message);
+                Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
             }
             catch(Exception e)
             {
-                Console.WriteLine("Exception handled: " + e);
+                Console.WriteLine("Exception handled:\n" + e.Message);
+                Console.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
             
         }
@@ -49,15 +52,18 @@ namespace RestaurantReviewBuisnessLayer
             }
             catch (SerializationException se)
             {
-                Console.WriteLine("Exception handled: " + se);
+                Console.WriteLine("Exception handled:\n" + se.Message);
+                Console.WriteLine("Stack Trace:\n" + se.StackTrace);
             }
             catch (SystemException syse)
             {
-                Console.WriteLine("Exception handled: " + syse);
+                Console.WriteLine("Exception handled:\n" + syse.Message);
+                Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception handled: " + e);
+                Console.WriteLine("Exception handled:\n" + e.Message);
+                Console.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
         }
 
@@ -73,19 +79,23 @@ namespace RestaurantReviewBuisnessLayer
             }
             catch(InvalidOperationException ioe)
             {
-                Console.WriteLine("Exception: " + ioe);
+                Console.WriteLine("Exception handled:\n" + ioe.Message);
+                Console.WriteLine("Stack Trace:\n" + ioe.StackTrace);
             }
             catch(XmlException xe)
             {
-                Console.WriteLine("Exception: " + xe);
+                Console.WriteLine("Exception handled:\n" + xe.Message);
+                Console.WriteLine("Stack Trace:\n" + xe.StackTrace);
             }
             catch(SystemException se)
             {
-                Console.WriteLine("Exception: " + se);
+                Console.WriteLine("Exception handled:\n" + se.Message);
+                Console.WriteLine("Stack Trace:\n" + se.StackTrace);
             }
             catch(Exception e)
             {
-                Console.WriteLine("Exception handled: " + e);
+                Console.WriteLine("Exception handled:\n" + e.Message);
+                Console.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
             finally
             {
@@ -105,19 +115,23 @@ namespace RestaurantReviewBuisnessLayer
             }
             catch(InvalidOperationException ioe)
             {
-                Console.WriteLine("Exception: " + ioe);
+                Console.WriteLine("Exception handled:\n" + ioe.Message);
+                Console.WriteLine("Stack Trace:\n" + ioe.StackTrace);
             }
             catch (XmlException xe)
             {
-                Console.WriteLine("Exception: " + xe);
+                Console.WriteLine("Exception handled:\n" + xe.Message);
+                Console.WriteLine("Stack Trace:\n" + xe.StackTrace);
             }
             catch (SystemException se)
             {
-                Console.WriteLine("Exception: " + se);
+                Console.WriteLine("Exception handled:\n" + se.Message);
+                Console.WriteLine("Stack Trace:\n" + se.StackTrace);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception handled: " + e);
+                Console.WriteLine("Exception handled:\n" + e.Message);
+                Console.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
             finally
             {
