@@ -18,7 +18,10 @@ namespace RestaurantReviewPresentationLayer
             Console.WriteLine("4.) Add a restaurant");
             Console.WriteLine("5.) Delete a review for a restaurant");
             Console.WriteLine("6.) Delete a restaurant");
-            Console.WriteLine("Please enter your selection (1 - 6):");
+            Console.WriteLine("7.) Display top three restaurants, according to ratings");
+            Console.WriteLine("8.) Display all restaurants in ascending order");
+            Console.WriteLine("9.) Display all restaurants in descending order");
+            Console.WriteLine("Please enter your selection (1 - 9):");
 
         }
 

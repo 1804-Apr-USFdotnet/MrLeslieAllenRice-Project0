@@ -58,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RestaurantReviewInput.cs" />
     <Compile Include="RRBusinessLogic.cs" />
     <Compile Include="SerializerDeserializerHelper.cs" />
     <Compile Include="RestaurantSearch.cs" />
@@ -74,6 +73,7 @@
     <None Include="App.config" />
     <None Include="NLog.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>

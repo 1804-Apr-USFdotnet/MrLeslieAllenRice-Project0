@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RestaurantReviewBuisnessLayer
 {
-    class Restaurant_SortAlphabetical : IComparer<Restaurant>
+    class Restaurant_SortAlphabetical : IComparer<RestaurantDataLayer.Restaurant>
     {
         #region IComparer<Restaurant> Members
-        public int Compare(Restaurant r1, Restaurant r2)
+        public int Compare(RestaurantDataLayer.Restaurant r1, RestaurantDataLayer.Restaurant r2)
         {
-            return string.Compare(r1.sName, r2.sName);
+            return string.Compare(r1.rName, r2.rName);
         }
         #endregion
     }

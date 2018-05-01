@@ -73,26 +73,65 @@ namespace RestaurantReviewBuisnessLayer
             {
                 Console.WriteLine("Please enter the Restaurant of the review you would like to delete");
                 string sRestaurantInput = Console.ReadLine();
-                Console.WriteLine("Please enter the address of the Restaurant review you would like to delete");
-                string sAddressInput = Console.ReadLine();
-                Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant review you would like to delete");
-                decimal dRatingInput = Console.Read();
                 Console.WriteLine("Please enter the rating summary for the Restaurant review you would like to delete");
                 string sRatingSummaryInput = Console.ReadLine();
 
-                RestaurantData.DeleteReviewFromDB(sRestaurantInput, sAddressInput, dRatingInput, sRatingSummaryInput);
+                RestaurantData.DeleteReviewFromDB(sRestaurantInput, sRatingSummaryInput);
             }
             else if(_iUserOption == "6")
             {
                 Console.WriteLine("Please enter the Restaurant you would like to delete");
                 string sRestaurantInput = Console.ReadLine();
-                Console.WriteLine("Please enter the address of the Restaurant you would like to delete");
-                string sAddressInput = Console.ReadLine();
-                Console.WriteLine("Please enter the rating (out of 5.00) for the Restaurant you would like to delete");
-                string sRatingInput = Console.ReadLine();
-                decimal dRatingInput = decimal.Parse(sRatingInput);
 
-                RestaurantData.DeleteRestaurantFromDB(sRestaurantInput, sAddressInput, dRatingInput);
+                RestaurantData.DeleteRestaurantFromDB(sRestaurantInput);
+            }
+            else if(_iUserOption == "7")
+            {
+                List<RestaurantDataLayer.Restaurant> lsLocalRestaurants = 
+                    RestaurantData.ShowAllRestaurants();
+                
+                RestaurantSort.DisplayTopThreeRestaurants(lsLocalRestaurants);
+
+                int i = 0;
+                foreach (var element in lsLocalRestaurants)
+                {
+                    if(i < 3)
+                    {
+                        Console.WriteLine(element.rName);
+                        Console.WriteLine("Address: " + element.rAddress);
+                        Console.WriteLine("Average Rating: " + element.rAvgRating);
+                        i++;
+                    }
+                    
+                }
+            }
+            else if(_iUserOption == "8")
+            {
+                List<RestaurantDataLayer.Restaurant> lsLocalRestaurants =
+                    RestaurantData.ShowAllRestaurants();
+
+                RestaurantSort.DisplayAllRestaurantsAsc(lsLocalRestaurants);
+
+                foreach(var element in lsLocalRestaurants)
+                {
+                    Console.WriteLine(element.rName);
+                    Console.WriteLine("Address: " + element.rAddress);
+                    Console.WriteLine("Average Rating: " + element.rAvgRating);
+                }
+            }
+            else if(_iUserOption == "9")
+            {
+                List<RestaurantDataLayer.Restaurant> lsLocalRestaurants =
+                    RestaurantData.ShowAllRestaurants();
+
+                RestaurantSort.DisplayAllRestaurantDesc(lsLocalRestaurants);
+
+                foreach (var element in lsLocalRestaurants)
+                {
+                    Console.WriteLine(element.rName);
+                    Console.WriteLine("Address: " + element.rAddress);
+                    Console.WriteLine("Average Rating: " + element.rAvgRating);
+                }
             }
         }
     }

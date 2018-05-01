@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Runtime.InteropServices;
 using System.Data.Entity.Infrastructure;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
-using System.Data.Entity.Core.Objects.Object;
+using System.Data.Entity;
 
 namespace RestaurantDataLayer
 {
@@ -71,20 +68,22 @@ namespace RestaurantDataLayer
         }
 
         // method to insert record into database
-        public static void InsertRestaurantIntoDB(string sRName, string sRAddress, decimal dAvgRating)
+        public static int InsertRestaurantIntoDB(string sRName, string sRAddress, decimal dAvgRating)
         {
+            RestaurantDataLayer.Restaurant restaurant = new RestaurantDataLayer.Restaurant()
+            {
+                rName = sRName,
+                rAddress = sRAddress,
+                rAvgRating = dAvgRating
+            };
+
             try
             {
                 RestaurantReviewP0Entities db;
 
                 using(db = new RestaurantReviewP0Entities())
                 {
-                    RestaurantDataLayer.Restaurant restaurant = new RestaurantDataLayer.Restaurant()
-                    {
-                        rName = sRName,
-                        rAddress = sRAddress,
-                        rAvgRating = dAvgRating
-                    };
+                    
 
                     db.Restaurants.Add(restaurant);
                     db.SaveChanges();
@@ -122,6 +121,7 @@ namespace RestaurantDataLayer
                 Debug.WriteLine("Exception handled:\n" + e.Message);
                 Debug.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
+            return restaurant.rId;
         }
 
         public static void InsertReviewIntoDB(string sRName, string sRvAddress, decimal dRvRating,
@@ -133,7 +133,7 @@ namespace RestaurantDataLayer
 
                 using (db = new RestaurantReviewP0Entities())
                 {
-                    RestaurantDataLayer.Review review = new RestaurantDataLayer.Review()
+                    Review review = new Review()
                     {
                         rName = sRName,
                         rAddress = sRvAddress,
@@ -181,7 +181,7 @@ namespace RestaurantDataLayer
         }
 
         // method to delete record into database
-        public static void DeleteRestaurantFromDB(string sRName, string sRAddress, decimal dAvgRating)
+        public static void DeleteRestaurantFromDB(string sRestaurantInput)
         {
             try
             {
@@ -189,16 +189,18 @@ namespace RestaurantDataLayer
 
                 using (db = new RestaurantReviewP0Entities())
                 {
-                    RestaurantDataLayer.Restaurant restaurant = new RestaurantDataLayer.Restaurant()
-                    {
-                        rName = sRName,
-                        rAddress = sRAddress,
-                        rAvgRating = dAvgRating
-                    };
-                    
+                    Restaurant restaurant = db.Restaurants.SingleOrDefault(x => x.rName == sRestaurantInput);
+                    db.Restaurants.Attach(restaurant);
+                    db.Entry(restaurant).State = EntityState.Deleted;
                     db.Restaurants.Remove(restaurant);
                     db.SaveChanges();
                 }
+            }
+            catch(DbUpdateConcurrencyException duce)
+            {
+                Console.WriteLine("Exception handled:\n" + duce.Message);
+                Console.WriteLine("Stack Trace:\n" + duce.StackTrace);
+
             }
             catch (SqlException se)
             {
@@ -227,20 +229,15 @@ namespace RestaurantDataLayer
             }
         }
 
-        public static void DeleteReviewFromDB(string sRName, string sRvAddress, decimal dRating, string sRSummary)
+        public static void DeleteReviewFromDB(string sRName, string sRSummary)
         {
             try
             {
                 RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
 
-                Review review = new Review()
-                {
-                    rName = sRName,
-                    rAddress = sRvAddress,
-                    rRating = dRating,
-                    rSummary = sRSummary
-                };
-
+                Review review = db.Reviews.SingleOrDefault(x => x.rName == sRName);
+                db.Reviews.Attach(review);
+                db.Entry(review).State = EntityState.Deleted;
                 db.Reviews.Remove(review);
                 db.SaveChanges();
             }

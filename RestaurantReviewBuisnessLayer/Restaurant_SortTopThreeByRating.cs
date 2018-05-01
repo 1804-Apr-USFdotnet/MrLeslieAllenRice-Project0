@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace RestaurantReviewBuisnessLayer 
 {
-    class Restaurant_SortTopThreeByRating : IComparer<Restaurant>
+    class Restaurant_SortTopThreeByRating : IComparer<RestaurantDataLayer.Restaurant>
     {
         #region IComparer<Restaurant> Members
-        public int Compare(Restaurant r1, Restaurant r2)
+        public int Compare(RestaurantDataLayer.Restaurant r1, RestaurantDataLayer.Restaurant r2)
         {
-            if(r1.dAvgRating < r2.dAvgRating)
+            if(r1.rAvgRating < r2.rAvgRating)
             {
                 return 1;
             }
-            else if(r1.dAvgRating > r2.dAvgRating)
+            else if(r1.rAvgRating > r2.rAvgRating)
             {
                 return -1;
             }

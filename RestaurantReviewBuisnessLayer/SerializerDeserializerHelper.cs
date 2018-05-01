@@ -14,10 +14,12 @@ namespace RestaurantReviewBuisnessLayer
     {
         public static void SerializeRestaurants(List<Restaurant> r)
         {
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+
             try
             {
                 XmlSerializer serializeRestaurants = new XmlSerializer(typeof(List<Restaurant>));
-                using (TextWriter writer = new StreamWriter(@"C:\Users\leslierice\source\repos\Restaurants.txt"))
+                using (TextWriter writer = new StreamWriter(@"C:\Revature\MrLeslieAllenRice-Project0\Restaurants.txt"))
                 {
                     serializeRestaurants.Serialize(writer, r);
                 }
@@ -26,26 +28,31 @@ namespace RestaurantReviewBuisnessLayer
             {
                 Console.WriteLine("Exception handled:\n" + se.Message);
                 Console.WriteLine("Stack Trace:\n" + se.StackTrace);
+                logger.Info(se);
             }
             catch(SystemException syse)
             {
                 Console.WriteLine("Exception handled:\n" + syse.Message);
                 Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
+                logger.Info(syse);
             }
             catch(Exception e)
             {
                 Console.WriteLine("Exception handled:\n" + e.Message);
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
+                logger.Info(e);
             }
             
         }
 
         public static void SerializeRestaurantReviews(List<Review> r)
         {
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+
             try
             {
                 XmlSerializer serializeRestaurantReviews = new XmlSerializer(typeof(List<Review>));
-                using (TextWriter writer = new StreamWriter(@"C:\Users\leslierice\source\repos\RestaurantReviews.txt"))
+                using (TextWriter writer = new StreamWriter(@"C:\Revature\MrLeslieAllenRice-Project0\RestaurantReviews.txt"))
                 {
                     serializeRestaurantReviews.Serialize(writer, r);
                 }
@@ -54,23 +61,27 @@ namespace RestaurantReviewBuisnessLayer
             {
                 Console.WriteLine("Exception handled:\n" + se.Message);
                 Console.WriteLine("Stack Trace:\n" + se.StackTrace);
+                logger.Info(se);
             }
             catch (SystemException syse)
             {
                 Console.WriteLine("Exception handled:\n" + syse.Message);
                 Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
+                logger.Info(syse);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception handled:\n" + e.Message);
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
+                logger.Info(e);
             }
         }
 
         public static void DeserializeRestaurants(List<Restaurant> r)
         {
-            TextReader reader = new StreamReader(@"C:\Users\leslierice\source\repos\Restaurants.txt");
-            
+            TextReader reader = new StreamReader(@"C:\Revature\MrLeslieAllenRice-Project0\RestaurantReviews.txt");
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+
             try
             {
                 XmlSerializer deserializeRestaurants = new XmlSerializer(typeof(List<Restaurant>));
@@ -81,21 +92,25 @@ namespace RestaurantReviewBuisnessLayer
             {
                 Console.WriteLine("Exception handled:\n" + ioe.Message);
                 Console.WriteLine("Stack Trace:\n" + ioe.StackTrace);
+                logger.Info(ioe);
             }
             catch(XmlException xe)
             {
                 Console.WriteLine("Exception handled:\n" + xe.Message);
                 Console.WriteLine("Stack Trace:\n" + xe.StackTrace);
+                logger.Info(xe);
             }
             catch(SystemException se)
             {
                 Console.WriteLine("Exception handled:\n" + se.Message);
                 Console.WriteLine("Stack Trace:\n" + se.StackTrace);
+                logger.Info(se);
             }
             catch(Exception e)
             {
                 Console.WriteLine("Exception handled:\n" + e.Message);
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
+                logger.Info(e);
             }
             finally
             {
@@ -105,7 +120,8 @@ namespace RestaurantReviewBuisnessLayer
 
         public static void DeserializeRestaurantReviews(List<Review> r)
         {
-            TextReader reader = new StreamReader(@"C:\Users\leslierice\source\repos\RestaurantReviews.txt");
+            TextReader reader = new StreamReader(@"C:\Revature\MrLeslieAllenRice-Project0\RestaurantReviews.txt");
+            var logger = NLog.LogManager.GetCurrentClassLogger();
 
             try
             {
@@ -117,21 +133,25 @@ namespace RestaurantReviewBuisnessLayer
             {
                 Console.WriteLine("Exception handled:\n" + ioe.Message);
                 Console.WriteLine("Stack Trace:\n" + ioe.StackTrace);
+                logger.Info(ioe);
             }
             catch (XmlException xe)
             {
                 Console.WriteLine("Exception handled:\n" + xe.Message);
                 Console.WriteLine("Stack Trace:\n" + xe.StackTrace);
+                logger.Info(xe);
             }
             catch (SystemException se)
             {
                 Console.WriteLine("Exception handled:\n" + se.Message);
                 Console.WriteLine("Stack Trace:\n" + se.StackTrace);
+                logger.Info(se);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception handled:\n" + e.Message);
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
+                logger.Info(e);
             }
             finally
             {
