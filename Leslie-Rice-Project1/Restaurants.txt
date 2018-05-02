@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRestaurant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Restaurant>
+    <sName>Arbys</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>4.4</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>Taco Bell</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>2.4</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>Burger King</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>3.1</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>McDonalds</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>5.0</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>Fazolis</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>1.4</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>Steak n Shake</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>3.2</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>Subway</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>4.8</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>In and Out Burger</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>4.1</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>KFC</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>0.4</dAvgRating>
+  </Restaurant>
+  <Restaurant>
+    <sName>Sonic</sName>
+    <sAddress>2010 Somwhere</sAddress>
+    <dAvgRating>1.1</dAvgRating>
+  </Restaurant>
+</ArrayOfRestaurant>
