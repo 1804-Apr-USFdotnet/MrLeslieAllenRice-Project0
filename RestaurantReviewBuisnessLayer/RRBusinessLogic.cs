@@ -133,6 +133,26 @@ namespace RestaurantReviewBuisnessLayer
                     Console.WriteLine("Average Rating: " + element.rAvgRating);
                 }
             }
+            else if(_iUserOption == "10")
+            {
+                Console.WriteLine("Please enter the partial string of the restaurant" +
+                    " you would like to search:");
+                string sPartString = Console.ReadLine();
+
+                List<RestaurantDataLayer.Restaurant> lsRestaurants = 
+                    RestaurantData.ShowAllRestaurants();
+
+                List<RestaurantDataLayer.Restaurant> lsReturnRestaurants =
+                    RestaurantSearch.DisplayRestaurantsContaining(lsRestaurants, sPartString);
+
+                foreach(var element in lsReturnRestaurants)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(element.rName);
+                    Console.WriteLine("Address: " + element.rAddress);
+                    Console.WriteLine("Average rating: " + element.rAvgRating);
+                }
+            }
         }
     }
 }

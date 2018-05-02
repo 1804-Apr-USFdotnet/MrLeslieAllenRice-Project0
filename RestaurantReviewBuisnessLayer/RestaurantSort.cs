@@ -23,6 +23,20 @@ namespace RestaurantReviewBuisnessLayer
             return lsTopRestaurants;
         }
 
+        public static List<Restaurant> DisplayTopThreeRestaurants
+            (List<Restaurant> lsRestaurants)
+        {
+            Restaurant_TopThreeByRating topThree =
+                new Restaurant_TopThreeByRating();
+
+            lsRestaurants.Sort(topThree);
+
+            List<Restaurant> lsTopRestaurants = new List<Restaurant>()
+            { lsRestaurants[0], lsRestaurants[1], lsRestaurants[2] };
+
+            return lsTopRestaurants;
+        }
+
         public static List<RestaurantDataLayer.Restaurant> DisplayAllRestaurantsAsc
             (List<RestaurantDataLayer.Restaurant> lsRestaurants)
         {
@@ -33,6 +47,19 @@ namespace RestaurantReviewBuisnessLayer
 
             List<RestaurantDataLayer.Restaurant> lsRestaurantsInAsc = 
                 new List<RestaurantDataLayer.Restaurant>(lsRestaurants);
+
+            return lsRestaurantsInAsc;
+        }
+
+        public static List<Restaurant> DisplayAllRestaurantsAsc
+            (List<Restaurant> lsRestaurants)
+        {
+            Restaurant_Alphabetical alphabetizedAsc =
+                new Restaurant_Alphabetical();
+
+            lsRestaurants.Sort(alphabetizedAsc);
+
+            List<Restaurant> lsRestaurantsInAsc = new List<Restaurant>(lsRestaurants);
 
             return lsRestaurantsInAsc;
         }
@@ -48,6 +75,20 @@ namespace RestaurantReviewBuisnessLayer
             List<RestaurantDataLayer.Restaurant> lsRestaurantsInAsc = 
                 new List<RestaurantDataLayer.Restaurant>
                 (lsRestaurants.Reverse<RestaurantDataLayer.Restaurant>());
+
+            return lsRestaurantsInAsc;
+        }
+
+        public static List<Restaurant> DisplayAllRestaurantDesc
+            (List<Restaurant> lsRestaurants)
+        {
+            Restaurant_Alphabetical alphabetizedDesc =
+                new Restaurant_Alphabetical();
+
+            lsRestaurants.Sort(alphabetizedDesc);
+
+            List<Restaurant> lsRestaurantsInAsc =
+                new List<Restaurant>(lsRestaurants.Reverse<Restaurant>());
 
             return lsRestaurantsInAsc;
         }

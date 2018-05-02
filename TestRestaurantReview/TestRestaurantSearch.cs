@@ -18,16 +18,16 @@ namespace RestaurantReviewBusinessLogicTest
         {
             // Act
             string sPartName = "Don";
-            Restaurant test1 = new Restaurant("Arbys", "2010 Somwhere", 4.4);
-            Restaurant test2 = new Restaurant("Taco Bell", "2010 Somwhere", 2.4);
-            Restaurant test3 = new Restaurant("Burger King", "2010 Somwhere", 3.1);
-            Restaurant test4 = new Restaurant("McDonalds", "2010 Somwhere", 5.0);
-            Restaurant test5 = new Restaurant("Fazolis", "2010 Somwhere", 1.4);
-            Restaurant test6 = new Restaurant("Steak n Shake", "2010 Somwhere", 3.2);
-            Restaurant test7 = new Restaurant("Subway", "2010 Somwhere", 4.8);
-            Restaurant test8 = new Restaurant("Dunkin Donuts", "2010 Somwhere", 4.1);
-            Restaurant test9 = new Restaurant("KFC", "2010 Somwhere", 0.4);
-            Restaurant test10 = new Restaurant("Sonic", "2010 Somwhere", 1.1);
+            Restaurant test1 = new Restaurant("Arbys", "2010 Somwhere", 4.4m);
+            Restaurant test2 = new Restaurant("Taco Bell", "2010 Somwhere", 2.4m);
+            Restaurant test3 = new Restaurant("Burger King", "2010 Somwhere", 3.1m);
+            Restaurant test4 = new Restaurant("McDonalds", "2010 Somwhere", 5.0m);
+            Restaurant test5 = new Restaurant("Fazolis", "2010 Somwhere", 1.4m);
+            Restaurant test6 = new Restaurant("Steak n Shake", "2010 Somwhere", 3.2m);
+            Restaurant test7 = new Restaurant("Subway", "2010 Somwhere", 4.8m);
+            Restaurant test8 = new Restaurant("Dunkin Donuts", "2010 Somwhere", 4.1m);
+            Restaurant test9 = new Restaurant("KFC", "2010 Somwhere", 0.4m);
+            Restaurant test10 = new Restaurant("Sonic", "2010 Somwhere", 1.1m);
 
             List<Restaurant> lsExpectedList = new List<Restaurant> { test4, test8 };
 

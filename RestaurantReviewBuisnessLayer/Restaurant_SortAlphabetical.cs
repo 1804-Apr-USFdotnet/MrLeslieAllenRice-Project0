@@ -15,4 +15,14 @@ namespace RestaurantReviewBuisnessLayer
         }
         #endregion
     }
+
+    class Restaurant_Alphabetical : IComparer<Restaurant>
+    {
+        #region IComparer<Restaurant> Members
+        public int Compare(Restaurant r1, Restaurant r2)
+        {
+            return string.Compare(r1.sName, r2.sName);
+        }
+        #endregion
+    }
 }

@@ -21,7 +21,8 @@ namespace RestaurantReviewPresentationLayer
             Console.WriteLine("7.) Display top three restaurants, according to ratings");
             Console.WriteLine("8.) Display all restaurants in ascending order");
             Console.WriteLine("9.) Display all restaurants in descending order");
-            Console.WriteLine("Please enter your selection (1 - 9):");
+            Console.WriteLine("10.) Search a restaurant by a partial string (i.e...Don for McDonalds)");
+            Console.WriteLine("Please enter your selection (1 - 10):");
 
         }
 

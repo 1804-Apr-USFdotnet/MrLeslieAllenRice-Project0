@@ -67,7 +67,6 @@
     <Compile Include="Review.cs" />
     <Compile Include="Restaurant.cs" />
     <Compile Include="RestaurantSort.cs" />
-    <Compile Include="ValidateInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
