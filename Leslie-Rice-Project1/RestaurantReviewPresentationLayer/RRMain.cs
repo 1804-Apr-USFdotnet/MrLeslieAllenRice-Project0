@@ -1,5 +1,6 @@
 ﻿using System;
-using RestaurantReviewBuisnessLayer;
+using System.Collections.Generic;
+using RestaurantReviewBusinessLayer;
 
 namespace RestaurantReviewPresentationLayer
 {
@@ -7,25 +8,19 @@ namespace RestaurantReviewPresentationLayer
     {
         static void Main(string[] args)
         {
-            string iKeepOn = "y";
-            RestaurantReviewDisplay.DisplayMenu();
-            string iUserInput = Console.ReadLine();
-            RRBusinessLogic.ProgramLogic(iUserInput);
+            string rest = "Popeyes";
+            string address = "8745 Maple St. Tampa Florida 33601";
 
-            Console.WriteLine();
-            Console.WriteLine("Do you wanna continue? (y for yes / n for no)");
-            iKeepOn = Console.ReadLine();
 
-            while (iKeepOn == "y")
+            RRBusinessLogic.DeleteRestInDB(rest, address);
+            List<Restaurant> r = RRBusinessLogic.GetAllRestaurants();
+            foreach(var element in r)
             {
-                RestaurantReviewDisplay.DisplayMenu();
-                iUserInput = Console.ReadLine();
-                RRBusinessLogic.ProgramLogic(iUserInput);
-
-                Console.WriteLine();
-                Console.WriteLine("Do you wanna continue? (y for yes / n for no)");
-                iKeepOn = Console.ReadLine();
+                Console.WriteLine(element.Name);
+                Console.WriteLine(element.Address);
+                Console.WriteLine(element.AvgRating);
             }
+            Console.Read();
         }
     }
 }

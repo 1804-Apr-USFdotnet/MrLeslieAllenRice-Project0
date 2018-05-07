@@ -61,8 +61,6 @@
     <Compile Include="RRBusinessLogic.cs" />
     <Compile Include="SerializerDeserializerHelper.cs" />
     <Compile Include="RestaurantSearch.cs" />
-    <Compile Include="Restaurant_SortAlphabetical.cs" />
-    <Compile Include="Restaurant_SortTopThreeByRating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs" />
     <Compile Include="Restaurant.cs" />

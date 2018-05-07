@@ -1,0 +1,58 @@
+﻿@model IEnumerable<RestaurantReviewWeb.Models.Review>
+
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h2 align="center">All Reviews</h2>
+    <p align="center">
+        @Html.ActionLink("Create New Review", "Create")
+    </p>
+    <table class="table" align="center">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RestName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RestAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RvRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RvSummary)
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RvRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RvSummary)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

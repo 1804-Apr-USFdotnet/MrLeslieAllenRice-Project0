@@ -1,16 +1,43 @@
 ﻿using System;
+using RestaurantDataLayer;
 
 using System.Collections.Generic;
 
-namespace RestaurantReviewBuisnessLayer
+namespace RestaurantReviewBusinessLayer
 {
     public class Restaurant
     {
         List<Review> lsRestaurantReview;
 
-        public string sName;
-        public string sAddress;
-        public decimal dAvgRating;
+        private int iId;
+        private string sName;
+        private string sAddress;
+        private decimal? dAvgRating;
+
+        public int Id
+        {
+            get => iId;
+            set => iId = value;
+        }
+
+        public string Name
+        {
+            get => sName;
+            set => sName = value;
+        }
+
+        public string Address
+        {
+            get => sAddress;
+            set => sAddress = value;
+        }
+
+        public decimal? AvgRating
+        {
+            get => dAvgRating;
+            set => dAvgRating = value;
+        }
+        
 
         public Restaurant()
         {
@@ -36,15 +63,24 @@ namespace RestaurantReviewBuisnessLayer
 
         private void calcAverageRating()
         {
-            decimal total = 0;
+            decimal? total = 0;
             decimal noOfReviews = 0;
             foreach(Review rr in lsRestaurantReview)
             {
                 noOfReviews++;
-                total += rr.dRating;
+                total += rr.Rating;
             }
 
             dAvgRating = total / noOfReviews;
+        }
+
+        public static explicit operator Restaurant(RestaurantDataLayer.Restaurant rdl)
+        {
+            Restaurant r = new Restaurant();
+            r.Name = rdl.rName;
+            r.Address = rdl.rAddress;
+            r.dAvgRating = rdl.rAvgRating;
+            return r;
         }
 
         

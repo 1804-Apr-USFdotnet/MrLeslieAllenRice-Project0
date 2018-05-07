@@ -15,11 +15,11 @@ namespace RestaurantDataLayer
         // method to get restaurants
         public static List<Restaurant> ShowAllRestaurants()
         {
+            RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
             List<Restaurant> lsLocalList = new List<Restaurant>();
 
             try
             {
-                RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
                 lsLocalList = db.Restaurants.ToList();
             }
             catch(InvalidOperationException ioe)
@@ -29,8 +29,8 @@ namespace RestaurantDataLayer
             }
             catch(SystemException se)
             {
-                Console.WriteLine("Exception handled:\n" + se.Message);
-                Console.WriteLine("Stack Trace:\n" + se.StackTrace);
+                Debug.WriteLine("Exception handled:\n" + se.Message);
+                Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
             }
             catch(Exception e)
             {
@@ -40,14 +40,45 @@ namespace RestaurantDataLayer
             return lsLocalList;
         }
 
-        // method to get reviews
-        public static List<Review> ShowRestaurantReviews(string _sRestaurant)
+        public static List<Review> ShowAllReviews()
         {
-            List<Review> lsReviews = new List<Review>();
+            RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
+            List<Review> lsLocalList = new List<Review>();
+
             try
             {
-                RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
-                lsReviews = db.Restaurants.ToList().SingleOrDefault(x => x.rName == _sRestaurant).Reviews.ToList();
+                lsLocalList = db.Reviews.ToList();
+            }
+            catch (InvalidOperationException ioe)
+            {
+                Console.WriteLine("Exception handled:\n" + ioe.Message);
+                Console.WriteLine("Stack Trace:\n" + ioe.StackTrace);
+            }
+            catch (SystemException se)
+            {
+                Debug.WriteLine("Exception handled:\n" + se.Message);
+                Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception handled:\n" + e.Message);
+                Console.WriteLine("Stack Trace:\n" + e.StackTrace);
+            }
+            return lsLocalList;
+        }
+
+        // method to get reviews
+        public static List<Review> ShowReviewsForRestaurant(string sRestName)
+        {
+            RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
+            List<Review> lsAllReviews = ShowAllReviews();
+            List<Review> localReviewList = new List<Review>();
+
+            try
+            {
+                localReviewList = (from r in lsAllReviews
+                            where r.rName == sRestName
+                            select r).ToList();
             }
             catch(InvalidOperationException ioe)
             {
@@ -64,27 +95,24 @@ namespace RestaurantDataLayer
                 Console.WriteLine("Exception handled:\n" + e.Message);
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
-            return lsReviews;
+            return localReviewList;
         }
 
         // method to insert record into database
-        public static int InsertRestaurantIntoDB(string sRName, string sRAddress, decimal dAvgRating)
+        public static void InsertRestaurantIntoDB(string sRestName, string sAddress)
         {
-            RestaurantDataLayer.Restaurant restaurant = new RestaurantDataLayer.Restaurant()
+            RestaurantReviewP0Entities db;
+            Restaurant restaurant = new Restaurant()
             {
-                rName = sRName,
-                rAddress = sRAddress,
-                rAvgRating = dAvgRating
+                rName = sRestName,
+                rAddress = sAddress,
+                rAvgRating = 0.0m
             };
 
             try
             {
-                RestaurantReviewP0Entities db;
-
                 using(db = new RestaurantReviewP0Entities())
                 {
-                    
-
                     db.Restaurants.Add(restaurant);
                     db.SaveChanges();
                 }
@@ -121,28 +149,133 @@ namespace RestaurantDataLayer
                 Debug.WriteLine("Exception handled:\n" + e.Message);
                 Debug.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
-            return restaurant.rId;
         }
 
-        public static void InsertReviewIntoDB(string sRName, string sRvAddress, decimal dRvRating,
-            string sRvSummary, int iForeignKey)
+        public static int InsertReviewIntoDB(Review rv)
         {
+            RestaurantReviewP0Entities db;
+            Review localReview = new Review()
+            {
+                rName = rv.rName,
+                rAddress = rv.rAddress,
+                rRating = rv.rRating,
+                rSummary = rv.rSummary,
+                fk_rId = rv.fk_rId
+            };
+ 
             try
             {
-                RestaurantReviewP0Entities db;
-
                 using (db = new RestaurantReviewP0Entities())
                 {
-                    Review review = new Review()
-                    {
-                        rName = sRName,
-                        rAddress = sRvAddress,
-                        rRating = dRvRating,
-                        rSummary = sRvSummary,
-                        fk_rId = iForeignKey
-                    };
+                    db.Reviews.Add(localReview);
+                    db.SaveChanges();
+                }
+            }
+            catch (DbUpdateException se)
+            {
+                Debug.WriteLine("Exception handled:\n" + se.Message);
+                Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
+                Debug.WriteLine(se.InnerException.Message);
+                Debug.WriteLine(se.InnerException);
+            }
+            catch (SqlException se)
+            {
+                Console.WriteLine("Exception handled:\n" + se.Message);
+                Console.WriteLine("Stack Trace:\n" + se.StackTrace);
+            }
+            catch (DbException de)
+            {
+                Console.WriteLine("Exception handled:\n" + de.Message);
+                Console.WriteLine("Stack Trace:\n" + de.StackTrace);
+            }
+            catch (ExternalException ee)
+            {
+                Console.WriteLine("Exception handled:\n" + ee.Message);
+                Console.WriteLine("Stack Trace:\n" + ee.StackTrace);
+            }
+            catch (SystemException syse)
+            {
+                Console.WriteLine("Exception handled:\n" + syse.Message);
+                Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception handled:\n" + e.Message);
+                Console.WriteLine("Stack Trace:\n" + e.StackTrace);
+            }
+            return localReview.rvId;
+        }
 
-                    db.Reviews.Add(review);
+        // method to update record into database
+        public static void UpdateRestaurantInDB(string sRestName, string sAddress)
+        {
+            Restaurant localRestaurant;
+            RestaurantReviewP0Entities db;
+
+            try
+            {
+                using (db = new RestaurantReviewP0Entities())
+                {
+                    localRestaurant = db.Restaurants.Single(x => x.rName == sRestName);
+
+                    localRestaurant.rName = sRestName;
+                    localRestaurant.rAddress = sAddress;
+
+                    db.Restaurants.Attach(localRestaurant);
+                    db.Entry(localRestaurant).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (DbUpdateException se)
+            {
+                Debug.WriteLine("Exception handled:\n" + se.Message);
+                Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
+                Debug.WriteLine(se.InnerException.Message);
+                Debug.WriteLine(se.InnerException);
+            }
+            catch (SqlException se)
+            {
+                Debug.WriteLine("Exception handled:\n" + se.Message);
+                Debug.WriteLine("Stack Trace:\n" + se.StackTrace);
+            }
+            catch (DbException de)
+            {
+                Debug.WriteLine("Exception handled:\n" + de.Message);
+                Debug.WriteLine("Stack Trace:\n" + de.StackTrace);
+            }
+            catch (ExternalException ee)
+            {
+                Console.WriteLine("Exception handled:\n" + ee.Message);
+                Console.WriteLine("Stack Trace:\n" + ee.StackTrace);
+            }
+            catch (SystemException syse)
+            {
+                Console.WriteLine("Exception handled:\n" + syse.Message);
+                Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception handled:\n" + e.Message);
+                Debug.WriteLine("Stack Trace:\n" + e.StackTrace);
+            }
+        }
+
+       
+        public static void UpdateReviewInDB(Review rv)
+        {
+            RestaurantReviewP0Entities db;
+            Review localReview;
+            try
+            {
+                using (db = new RestaurantReviewP0Entities())
+                {
+                    localReview = db.Reviews.Single(x => x.rvId == rv.rvId);
+
+                    localReview.rRating = rv.rRating;
+                    localReview.rSummary = rv.rSummary;
+
+                    db.Reviews.Attach(localReview);
+                    db.Entry(localReview).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -181,18 +314,18 @@ namespace RestaurantDataLayer
         }
 
         // method to delete record into database
-        public static void DeleteRestaurantFromDB(string sRestaurantInput)
+        public static void DeleteRestaurantFromDB(string sRestName)
         {
+            RestaurantReviewP0Entities db;
+            Restaurant localRestaurant;
             try
             {
-                RestaurantReviewP0Entities db;
-
                 using (db = new RestaurantReviewP0Entities())
                 {
-                    Restaurant restaurant = db.Restaurants.SingleOrDefault(x => x.rName == sRestaurantInput);
-                    db.Restaurants.Attach(restaurant);
-                    db.Entry(restaurant).State = EntityState.Deleted;
-                    db.Restaurants.Remove(restaurant);
+                    localRestaurant = db.Restaurants.SingleOrDefault(x => x.rName == sRestName);
+                    db.Restaurants.Attach(localRestaurant);
+                    db.Entry(localRestaurant).State = EntityState.Deleted;
+                    db.Restaurants.Remove(localRestaurant);
                     db.SaveChanges();
                 }
             }
@@ -229,17 +362,20 @@ namespace RestaurantDataLayer
             }
         }
 
-        public static void DeleteReviewFromDB(string sRName, string sRSummary)
+        public static void DeleteReviewFromDB(Review rv)
         {
+            RestaurantReviewP0Entities db;
+            Review localReview;
             try
             {
-                RestaurantReviewP0Entities db = new RestaurantReviewP0Entities();
-
-                Review review = db.Reviews.SingleOrDefault(x => x.rName == sRName);
-                db.Reviews.Attach(review);
-                db.Entry(review).State = EntityState.Deleted;
-                db.Reviews.Remove(review);
-                db.SaveChanges();
+                using (db = new RestaurantReviewP0Entities())
+                {
+                    localReview = db.Reviews.SingleOrDefault(x => x.rvId == rv.rvId);
+                    db.Reviews.Attach(localReview);
+                    db.Entry(localReview).State = EntityState.Deleted;
+                    db.Reviews.Remove(localReview);
+                    db.SaveChanges();
+                }
             }
             catch (SqlException se)
             {

@@ -1,0 +1,33 @@
+﻿@using System.Web.Mvc.Html
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <table>
+            <thead>
+                <template>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </template>
+                <template>
+                    @Html.ActionLink("AboutUs", "AboutUs", "Home")
+                </template>
+                <template>
+                    @Html.ActionLink("ContactUs", "ContactUs", "Home")
+                </template>
+
+            </thead>
+        </table>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+
+    </footer>
+</body>
+</html>

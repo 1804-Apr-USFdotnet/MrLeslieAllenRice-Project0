@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RestaurantReviewWeb.Models.Review>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+</head>
+<body>
+    <div align="center">
+        <strong>
+            @TempData["rName"]
+            @TempData["rAddress"]
+        </strong>
+    </div>
+    <br/>
+    <table class="table" align="center">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RvRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RvSummary)
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RvRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RvSummary)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.RvId}) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.RvId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿@model RestaurantReviewWeb.Models.Restaurant
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        <h3>Edit a Restaurant</h3>
+        @using (Html.BeginForm("Update", "Restaurants", FormMethod.Post))
+        {
+            @Html.Label("Name");<br />
+            @Html.TextBox("sRestName");<br /><br />
+            @Html.Label("Address");<br />
+            @Html.TextBox("sAddress");<br /><br />
+            <input type="submit" value="Add" />
+        }
+    </div>
+</body>
+</html>

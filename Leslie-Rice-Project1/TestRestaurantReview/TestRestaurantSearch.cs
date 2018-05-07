@@ -2,7 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RestaurantReviewBuisnessLayer;
+using RestaurantReviewBusinessLayer;
 
 namespace RestaurantReviewBusinessLogicTest
 {
@@ -18,16 +18,16 @@ namespace RestaurantReviewBusinessLogicTest
         {
             // Act
             string sPartName = "Don";
-            Restaurant test1 = new Restaurant("Arbys", "2010 Somwhere", 4.4m);
-            Restaurant test2 = new Restaurant("Taco Bell", "2010 Somwhere", 2.4m);
-            Restaurant test3 = new Restaurant("Burger King", "2010 Somwhere", 3.1m);
-            Restaurant test4 = new Restaurant("McDonalds", "2010 Somwhere", 5.0m);
-            Restaurant test5 = new Restaurant("Fazolis", "2010 Somwhere", 1.4m);
-            Restaurant test6 = new Restaurant("Steak n Shake", "2010 Somwhere", 3.2m);
-            Restaurant test7 = new Restaurant("Subway", "2010 Somwhere", 4.8m);
-            Restaurant test8 = new Restaurant("Dunkin Donuts", "2010 Somwhere", 4.1m);
-            Restaurant test9 = new Restaurant("KFC", "2010 Somwhere", 0.4m);
-            Restaurant test10 = new Restaurant("Sonic", "2010 Somwhere", 1.1m);
+            Restaurant test1 = new Restaurant("Arbys", "E Fletcher Ave", "Tampa", "FL", 33612, 4.4m);
+            Restaurant test2 = new Restaurant("Taco Bell", "5318 E Fowler Ave", "Tampa", "FL", 33617, 2.4m);
+            Restaurant test3 = new Restaurant("Burger King", "5301 E Fowler Ave", "Temple Terrace", "FL", 33617, 3.1m);
+            Restaurant test4 = new Restaurant("McDonalds", "11707 N 56th St", "Tampa", "FL", 33617, 5.0m);
+            Restaurant test5 = new Restaurant("Fazolis", "238 W Alexander St", "Plant City", "FL", 33563, 1.4m);
+            Restaurant test6 = new Restaurant("Steak n Shake", "1450 E Fowler Ave", "Temple Terrace", "FL", 33617, 3.2m);
+            Restaurant test7 = new Restaurant("Subway", "4202 E Fowler Ave", "Tampa", "FL", 33620, 4.8m);
+            Restaurant test8 = new Restaurant("Dunkin Donuts", "5610 E Fowler Ave", "Temple Terrace", "FL", 33617, 4.1m);
+            Restaurant test9 = new Restaurant("KFC", "2212 E Fowler Ave", "Tampa", "FL", 33612, 0.4m);
+            Restaurant test10 = new Restaurant("Sonic", "1915 E Fowler Ave", "Tampa", "FL", 33612, 1.1m);
 
             List<Restaurant> lsExpectedList = new List<Restaurant> { test4, test8 };
 

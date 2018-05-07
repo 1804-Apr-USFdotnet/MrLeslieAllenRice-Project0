@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using NLog;
 
-namespace RestaurantReviewBuisnessLayer
+
+namespace RestaurantReviewBusinessLayer
 {
     public static class SerializerDeserializerHelper
     {

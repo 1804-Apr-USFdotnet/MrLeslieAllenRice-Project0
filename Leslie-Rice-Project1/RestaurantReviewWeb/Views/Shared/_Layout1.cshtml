@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <div style="background-color:aliceblue" align="center">
+            <h1>Welcome to Restaurant Rater!</h1>
+        </div>
+        <br/>
+        <div align="center">
+            <table>
+                <thead>
+
+                    @Html.ActionLink("Home", "Index", "Home")|
+
+                    @Html.ActionLink("Restaurants", "Index", "Restaurants")|
+
+                    @Html.ActionLink("Reviews", "Index", "Reviews")
+
+                </thead>
+            </table>
+        </div>
+        <div align="center">
+            <br />
+            @using (Html.BeginForm("Search", "Restaurants", FormMethod.Post))
+            {
+                @Html.TextBox("sSearch")
+                <input type="submit" value="Search" />
+            }
+        </div>
+        <br/>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <br/>
+    <br/>
+    <footer>
+        @RenderSection("DetailsPage", false)
+        &copy;USF-Revature Tampa
+    </footer>
+</body>
+</html>
