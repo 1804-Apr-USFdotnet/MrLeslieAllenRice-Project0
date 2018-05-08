@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Data.Entity;
-using RestaurantDataLayer;
+using ClassLibrary1;
 
-namespace RestaurantDataLayer
+namespace ClassLibrary1
 {
     public static class RestaurantData
     {
@@ -316,35 +316,17 @@ namespace RestaurantDataLayer
         // method to delete record into database
         public static void DeleteRestaurantFromDB(string sRestName)
         {
-            List<Restaurant> lsRestaurants = ShowAllRestaurants();
+            //List<Restaurant> lsRestaurants = ShowAllRestaurants();
             RestaurantReviewP0Entities db;
-            List<Review> lsAllReviews = ShowAllReviews();
+            //List<Review> lsAllReviews = ShowAllReviews();
 
             try
             {
                 using (db = new RestaurantReviewP0Entities())
                 {
-                    var query = (from rv in lsRestaurants
-                                 where rv.rName == sRestName
-                                 select rv);
-                    db.Reviews.Attach((Review)query);
-                    db.Entry(query.Cast<Review>()).State = EntityState.Deleted;
-                    db.Reviews.Remove((Review)query);
-                    db.SaveChanges();
-
-                    //lsAllReviews = ShowReviewsForRestaurant(sRestName);
-                    //foreach(var item in lsAllReviews)
-                    //{
-                    //    db.Reviews.Attach(item);
-                    //    db.Entry(item).State = EntityState.Deleted;
-                    //    db.Reviews.Remove(item);
-                    //    db.SaveChanges();
-                    //}
-
-                    //List<Review> lsRev = db.Reviews.SingleOrDefault(x => x.rName == sRestName);
                     Restaurant r = db.Restaurants.SingleOrDefault(x => x.rName == sRestName);
                     db.Restaurants.Attach(r);
-                    db.Entry(r).State = EntityState.Deleted;
+                    //db.Entry(r).State = EntityState.Deleted;
                     db.Restaurants.Remove(r);
                     db.SaveChanges();
                 }
@@ -382,8 +364,8 @@ namespace RestaurantDataLayer
             {
                 Console.WriteLine("Exception handled:\n" + syse.Message);
                 Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
-                Debug.WriteLine(syse.InnerException.Message);
-                Debug.WriteLine(syse.InnerException);
+                Console.WriteLine(syse.InnerException.Message);
+                Console.WriteLine(syse.InnerException);
             }
             catch (Exception e)
             {

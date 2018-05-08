@@ -1,9 +1,9 @@
 ﻿using System;
-using RestaurantDataLayer;
+using ClassLibrary1;
 
 using System.Collections.Generic;
 using System.Linq;
-using RestaurantDataLayer;
+using ClassLibrary1;
 
 namespace RestaurantReviewBusinessLayer
 {
@@ -83,7 +83,7 @@ namespace RestaurantReviewBusinessLayer
             
         }
 
-        public static explicit operator Restaurant(RestaurantDataLayer.Restaurant rdl)
+        public static explicit operator Restaurant(ClassLibrary1.Restaurant rdl)
         {
             Restaurant r = new Restaurant();
             r.Name = rdl.rName;

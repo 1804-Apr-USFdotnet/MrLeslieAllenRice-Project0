@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RestaurantDataLayer
+namespace ClassLibrary1
 {
     using System;
     using System.Collections.Generic;

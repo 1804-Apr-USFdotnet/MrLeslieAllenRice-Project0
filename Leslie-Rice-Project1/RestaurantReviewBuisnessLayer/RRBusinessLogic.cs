@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RestaurantDataLayer;
+using ClassLibrary1;
 
 namespace RestaurantReviewBusinessLayer
 {
@@ -62,9 +62,9 @@ namespace RestaurantReviewBusinessLayer
             return lsLocalList;
         }
 
-        public static RestaurantDataLayer.Restaurant ToDB(Restaurant r)
+        public static ClassLibrary1.Restaurant ToDB(Restaurant r)
         {
-            RestaurantDataLayer.Restaurant rest = new RestaurantDataLayer.Restaurant
+            ClassLibrary1.Restaurant rest = new ClassLibrary1.Restaurant
             {
                 rId = r.Id,
                 rName = r.Name,
@@ -74,9 +74,9 @@ namespace RestaurantReviewBusinessLayer
             return rest;
         }
 
-        public static RestaurantDataLayer.Review ReviewToDB(Review r)
+        public static ClassLibrary1.Review ReviewToDB(Review r)
         {
-            RestaurantDataLayer.Review rev = new RestaurantDataLayer.Review
+            ClassLibrary1.Review rev = new ClassLibrary1.Review
             {
                 rvId = r.RvId,
                 rName = r.Name,
@@ -88,7 +88,7 @@ namespace RestaurantReviewBusinessLayer
             return rev;
         }
 
-        public static Restaurant ToBusiness(RestaurantDataLayer.Restaurant r)
+        public static Restaurant ToBusiness(ClassLibrary1.Restaurant r)
         {
             Restaurant rest = new Restaurant()
             {

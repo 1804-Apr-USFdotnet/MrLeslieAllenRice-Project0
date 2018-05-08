@@ -66,7 +66,7 @@ namespace RestaurantReviewBusinessLayer
             Rating = _dRating;
         }
 
-        public static explicit operator Review(RestaurantDataLayer.Review rdl)
+        public static explicit operator Review(ClassLibrary1.Review rdl)
         {
             Review rv = new Review();
             rv.Name = rdl.rName;
