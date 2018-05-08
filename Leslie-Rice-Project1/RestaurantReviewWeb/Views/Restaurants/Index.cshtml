@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", "Restaurants")
-                        @Html.ActionLink("Reviews", "Search", "Reviews", new {sRestName = item.Name }, null)
+                        @Html.ActionLink("Reviews", "Search", "Reviews", new {sRestName = item.Name, sAddress = item.Address}, null)
                         @Html.ActionLink("Delete", "Remove", "Restaurants", new { sRestName = item.Name }, null)
                     </td>
                 </tr>

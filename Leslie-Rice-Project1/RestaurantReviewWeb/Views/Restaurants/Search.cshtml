@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.AvgRating)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Reviews", "Reviews", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Edit", "Edit", "Reviews", new { id=item.Id }, null) |
+                @Html.ActionLink("Reviews", "Search", "Reviews", new { id = item.Id }, null))
+                @Html.ActionLink("Delete", "Delete", "Reviews", new { id=item.Id }, null)
             </td>
         </tr>
     }
