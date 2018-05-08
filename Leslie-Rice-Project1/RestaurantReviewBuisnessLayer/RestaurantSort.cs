@@ -25,6 +25,19 @@ namespace RestaurantReviewBusinessLayer
             return lsRest;
         }
 
+        public static List<Restaurant> DisplayTopThreeRestaurants(List<Restaurant> lsRest)
+        {
+            var lsLocalList = lsRest.OrderBy(x => x.AvgRating).ToList();
+            List<Restaurant> lsLocalRest = new List<Restaurant>(3);
+
+            for(int i = 0; i < lsLocalList.Count; i++)
+            {
+                lsLocalRest[i] = lsLocalList[i];
+            }
+            
+            return lsRest;
+        }
+
         public static List<Restaurant> DisplayAllRestaurantsAsc
             (List<Restaurant> lsRestaurants)
         {

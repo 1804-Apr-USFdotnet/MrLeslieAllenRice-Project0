@@ -24,5 +24,43 @@ namespace RestaurantReviewWeb.Controllers
             return View(lsRev);
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(string sRestName, string sAddress,
+            decimal dRating, string sRevSummary, int iFk_RId)
+        {
+            Review.InsertRevIntoDB(sRestName, sAddress, dRating, sRevSummary, iFk_RId);
+            TempData["rName"] = sRestName;
+            return View();
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult Update(string sRestName, string sAddress,
+            decimal dRating, string sSummary)
+        {
+            Review.UpdateRevInDB(sRestName, sAddress, dRating, sSummary);
+            return View();
+        }
+
+        public ActionResult Remove()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string sRestName, decimal dRating, string sSummary)
+        {
+            Review.DeleteRevInDB(sRestName, dRating, sSummary);
+            return View();
+        }
+
     }
 }

@@ -200,9 +200,18 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Reviews\Search.cshtml" />
     <Content Include="Views\Restaurants\Add.cshtml" />
-    <Content Include="Views\Restaurants\Delete.cshtml" />
     <Content Include="Views\Restaurants\Edit.cshtml" />
     <Content Include="Views\Restaurants\Update.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Add.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Update.cshtml" />
+    <Content Include="Views\Restaurants\Delete.cshtml" />
+    <Content Include="Views\Restaurants\Remove.cshtml" />
+    <Content Include="Views\Reviews\Remove.cshtml" />
+    <Content Include="Views\Reviews\Delete.cshtml" />
+    <Content Include="Views\Restaurants\SortAsc.cshtml" />
+    <Content Include="Views\Restaurants\SortDesc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

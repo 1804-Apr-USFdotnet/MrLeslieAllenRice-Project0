@@ -14,20 +14,5 @@ namespace RestaurantReviewWeb.Controllers
             List<Restaurant> lsRest = Restaurant.GetTopThreeRestaurants();
             return View(lsRest);
         }
-
-        //public ActionResult Restaurants()
-        //{
-        //    ViewBag.Message = "Your application description page.";
-
-        //    List<Restaurant> lsRest = Restaurant.GetRestaurants();
-        //    return View(lsRest);
-        //}
-
-        //public ActionResult Reviews()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View();
-        //}
     }
 }

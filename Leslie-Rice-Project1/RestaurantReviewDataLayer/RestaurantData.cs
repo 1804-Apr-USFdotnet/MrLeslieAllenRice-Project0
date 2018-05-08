@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Data.Entity;
+using RestaurantDataLayer;
 
 namespace RestaurantDataLayer
 {
@@ -151,16 +152,17 @@ namespace RestaurantDataLayer
             }
         }
 
-        public static int InsertReviewIntoDB(Review rv)
+        public static void InsertReviewIntoDB(string sRestName, string sAddress,
+            decimal dRating, string sRevSummary, int iFk_RId)
         {
             RestaurantReviewP0Entities db;
             Review localReview = new Review()
             {
-                rName = rv.rName,
-                rAddress = rv.rAddress,
-                rRating = rv.rRating,
-                rSummary = rv.rSummary,
-                fk_rId = rv.fk_rId
+                rName = sRestName,
+                rAddress = sAddress,
+                rRating = dRating,
+                rSummary = sRevSummary,
+                fk_rId = iFk_RId
             };
  
             try
@@ -203,7 +205,6 @@ namespace RestaurantDataLayer
                 Console.WriteLine("Exception handled:\n" + e.Message);
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
-            return localReview.rvId;
         }
 
         // method to update record into database
@@ -259,20 +260,19 @@ namespace RestaurantDataLayer
                 Debug.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
         }
-
-       
-        public static void UpdateReviewInDB(Review rv)
+        
+        public static void UpdateReviewInDB(string sRestName, string sAddress,
+            decimal dRating, string sSummary )
         {
-            RestaurantReviewP0Entities db;
             Review localReview;
             try
             {
-                using (db = new RestaurantReviewP0Entities())
+                using (var db = new RestaurantReviewP0Entities())
                 {
-                    localReview = db.Reviews.Single(x => x.rvId == rv.rvId);
+                    localReview = db.Reviews.Single(x => x.rName == sRestName);
 
-                    localReview.rRating = rv.rRating;
-                    localReview.rSummary = rv.rSummary;
+                    localReview.rRating = dRating;
+                    localReview.rSummary = sSummary;
 
                     db.Reviews.Attach(localReview);
                     db.Entry(localReview).State = EntityState.Modified;
@@ -316,16 +316,36 @@ namespace RestaurantDataLayer
         // method to delete record into database
         public static void DeleteRestaurantFromDB(string sRestName)
         {
+            List<Restaurant> lsRestaurants = ShowAllRestaurants();
             RestaurantReviewP0Entities db;
-            Restaurant localRestaurant;
+            List<Review> lsAllReviews = ShowAllReviews();
+
             try
             {
                 using (db = new RestaurantReviewP0Entities())
                 {
-                    localRestaurant = db.Restaurants.SingleOrDefault(x => x.rName == sRestName);
-                    db.Restaurants.Attach(localRestaurant);
-                    db.Entry(localRestaurant).State = EntityState.Deleted;
-                    db.Restaurants.Remove(localRestaurant);
+                    var query = (from rv in lsRestaurants
+                                 where rv.rName == sRestName
+                                 select rv);
+                    db.Reviews.Attach((Review)query);
+                    db.Entry(query.Cast<Review>()).State = EntityState.Deleted;
+                    db.Reviews.Remove((Review)query);
+                    db.SaveChanges();
+
+                    //lsAllReviews = ShowReviewsForRestaurant(sRestName);
+                    //foreach(var item in lsAllReviews)
+                    //{
+                    //    db.Reviews.Attach(item);
+                    //    db.Entry(item).State = EntityState.Deleted;
+                    //    db.Reviews.Remove(item);
+                    //    db.SaveChanges();
+                    //}
+
+                    //List<Review> lsRev = db.Reviews.SingleOrDefault(x => x.rName == sRestName);
+                    Restaurant r = db.Restaurants.SingleOrDefault(x => x.rName == sRestName);
+                    db.Restaurants.Attach(r);
+                    db.Entry(r).State = EntityState.Deleted;
+                    db.Restaurants.Remove(r);
                     db.SaveChanges();
                 }
             }
@@ -333,47 +353,62 @@ namespace RestaurantDataLayer
             {
                 Console.WriteLine("Exception handled:\n" + duce.Message);
                 Console.WriteLine("Stack Trace:\n" + duce.StackTrace);
+                Debug.WriteLine(duce.InnerException.Message);
+                Debug.WriteLine(duce.InnerException);
 
             }
             catch (SqlException se)
             {
                 Console.WriteLine("Exception handled:\n" + se.Message);
                 Console.WriteLine("Stack Trace:\n" + se.StackTrace);
+                Debug.WriteLine(se.InnerException.Message);
+                Debug.WriteLine(se.InnerException);
             }
             catch (DbException de)
             {
                 Console.WriteLine("Exception handled:\n" + de.Message);
                 Console.WriteLine("Stack Trace:\n" + de.StackTrace);
+                Debug.WriteLine(de.InnerException.Message);
+                Debug.WriteLine(de.InnerException);
             }
             catch (ExternalException ee)
             {
                 Console.WriteLine("Exception handled:\n" + ee.Message);
                 Console.WriteLine("Stack Trace:\n" + ee.StackTrace);
+                Debug.WriteLine(ee.InnerException.Message);
+                Debug.WriteLine(ee.InnerException);
             }
             catch (SystemException syse)
             {
                 Console.WriteLine("Exception handled:\n" + syse.Message);
                 Console.WriteLine("Stack Trace:\n" + syse.StackTrace);
+                Debug.WriteLine(syse.InnerException.Message);
+                Debug.WriteLine(syse.InnerException);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception handled:\n" + e.Message);
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
+                Debug.WriteLine(e.InnerException.Message);
+                Debug.WriteLine(e.InnerException);
             }
         }
 
-        public static void DeleteReviewFromDB(Review rv)
+        public static void DeleteReviewFromDB(string sRestName, decimal dRating, string sSummary)
         {
             RestaurantReviewP0Entities db;
-            Review localReview;
+            var lsReviews = ShowAllReviews();
             try
             {
                 using (db = new RestaurantReviewP0Entities())
                 {
-                    localReview = db.Reviews.SingleOrDefault(x => x.rvId == rv.rvId);
-                    db.Reviews.Attach(localReview);
-                    db.Entry(localReview).State = EntityState.Deleted;
-                    db.Reviews.Remove(localReview);
+                    var query = (from r in lsReviews
+                                 where r.rName == sRestName && r.rRating == dRating && r.rSummary == sSummary
+                                 select r);
+
+                    db.Reviews.Attach((Review)query);
+                    db.Entry(query).State = EntityState.Deleted;
+                    db.Reviews.Remove((Review)query);
                     db.SaveChanges();
                 }
             }
@@ -403,5 +438,14 @@ namespace RestaurantDataLayer
                 Console.WriteLine("Stack Trace:\n" + e.StackTrace);
             }
         }
+
+        public static int GetRestaurantId(string rName)
+        {
+            using(var db = new RestaurantReviewP0Entities())
+            {
+                return db.Restaurants.SingleOrDefault(r => r.rName == rName).rId;
+            }
+        }
+        
     }
 }

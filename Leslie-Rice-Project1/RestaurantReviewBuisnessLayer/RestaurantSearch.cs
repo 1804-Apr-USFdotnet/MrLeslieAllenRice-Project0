@@ -30,5 +30,20 @@ namespace RestaurantReviewBusinessLayer
 
             return containingRestaurant;
         }
+
+        public static List<Restaurant> DisplayRestaurantsContaining(string sPartialName,
+            List<Restaurant> lsRest)
+        {
+            List<Restaurant> lsLocalList = new List<Restaurant>();
+
+            for(int i = 0; i < lsRest.Count; i++)
+            {
+                if(lsRest.ElementAt(i).Name.Contains(sPartialName))
+                {
+                    lsLocalList.Add(lsRest.ElementAt(i));
+                }
+            }
+            return lsLocalList;
+        }
     }
 }

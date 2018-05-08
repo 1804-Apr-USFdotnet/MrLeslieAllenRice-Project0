@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestRestaurantSearch.cs" />
-    <Compile Include="TestRestaurantSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestSerialization.cs" />
   </ItemGroup>

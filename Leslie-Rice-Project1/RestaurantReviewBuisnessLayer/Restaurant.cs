@@ -2,6 +2,8 @@
 using RestaurantDataLayer;
 
 using System.Collections.Generic;
+using System.Linq;
+using RestaurantDataLayer;
 
 namespace RestaurantReviewBusinessLayer
 {
@@ -45,14 +47,16 @@ namespace RestaurantReviewBusinessLayer
             sAddress = null;
             dAvgRating = 0.0m;
             lsRestaurantReview = new List<Review>();
+            calcAverageRating();
         }
 
         public Restaurant(string _sName, string _sAddress, decimal _dAvgRating)
         {
-            this.sName = _sName;
-            this.sAddress = _sAddress;
-            this.dAvgRating = _dAvgRating;
+            sName = _sName;
+            sAddress = _sAddress;
+            dAvgRating = _dAvgRating;
             lsRestaurantReview = new List<Review>();
+            calcAverageRating();
         }
 
         public void addReview(Review rr)
@@ -61,7 +65,7 @@ namespace RestaurantReviewBusinessLayer
             calcAverageRating();
         }
 
-        private void calcAverageRating()
+        public void calcAverageRating()
         {
             decimal? total = 0;
             decimal noOfReviews = 0;
@@ -70,8 +74,13 @@ namespace RestaurantReviewBusinessLayer
                 noOfReviews++;
                 total += rr.Rating;
             }
-
-            dAvgRating = total / noOfReviews;
+            if (noOfReviews > 0)
+            {
+                dAvgRating = total / noOfReviews;
+            }
+            else
+                dAvgRating = 0.0m;
+            
         }
 
         public static explicit operator Restaurant(RestaurantDataLayer.Restaurant rdl)
@@ -79,7 +88,11 @@ namespace RestaurantReviewBusinessLayer
             Restaurant r = new Restaurant();
             r.Name = rdl.rName;
             r.Address = rdl.rAddress;
-            r.dAvgRating = rdl.rAvgRating;
+            foreach(var item in rdl.Reviews)
+            {
+                r.lsRestaurantReview.Add((Review)item);
+            }
+            r.calcAverageRating();
             return r;
         }
 

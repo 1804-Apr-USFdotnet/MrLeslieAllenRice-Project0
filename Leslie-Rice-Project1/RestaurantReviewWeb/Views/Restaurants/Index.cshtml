@@ -15,6 +15,13 @@
         <h2 align="center">All Restaurants</h2>
         <p align="center">
             @Html.ActionLink("Create New Restaurant", "Create", "Restaurants")
+            <br />
+            @Html.ActionLink("Sort Alphabetically Ascending", "SortAsc", "Restaurants")
+            <br />
+            @Html.ActionLink("Sort Alphabetically Descending", "SortDesc", "Restaurants")
+        </p>
+        <p align="center">
+            
         </p>
         <table class="table" align="center">
             <tr>
@@ -43,9 +50,9 @@
                         @Html.DisplayFor(modelItem => item.AvgRating)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "Restaurants", new { sRestName = item.Name, sAddress = item.Address }, null) |
-                        @Html.ActionLink("Reviews", "Search", "Reviews", new { sRestName = item.Name, sAddress = item.Address}, null) |
-                        @Html.ActionLink("Delete", "Delete", "Restaurants", new { sRestName = item.Name, sAddress = item.Address }, null)
+                        @Html.ActionLink("Edit", "Edit", "Restaurants")
+                        @Html.ActionLink("Reviews", "Search", "Reviews", new {sRestName = item.Name }, null)
+                        @Html.ActionLink("Delete", "Remove", "Restaurants", new { sRestName = item.Name }, null)
                     </td>
                 </tr>
             }

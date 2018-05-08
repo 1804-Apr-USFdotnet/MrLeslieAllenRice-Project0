@@ -6,34 +6,41 @@ namespace RestaurantReviewBusinessLayer
 {
     public class Review
     {
-        private string sRestaurantName;
-        private string sReviewAddress;
-        private string sReviewSummary;
-        private decimal? dRating;
+        private int rvId;
+        private string rName;
+        private string rAddress;
+        private decimal? rRating;
+        private string rSummary;
         private int fk_rId;
 
-        public string RestaurantName
+        public int RvId
         {
-            get => sRestaurantName;
-            set => sRestaurantName = value;
+            get => rvId;
+            set => rvId = value;
         }
 
-        public string ReviewAddress
+        public string Name
         {
-            get => sReviewAddress;
-            set => sReviewAddress = value;
+            get => rName;
+            set => rName = value;
         }
 
-        public string ReviewSummary
+        public string Address
         {
-            get => sReviewSummary;
-            set => sReviewSummary = value;
+            get => rAddress;
+            set => rAddress = value;
         }
 
         public decimal? Rating
         {
-            get => dRating;
-            set => dRating = value;
+            get => rRating;
+            set => rRating = value;
+        }
+
+        public string Summary
+        {
+            get => rSummary;
+            set => rSummary = value;
         }
 
         public int RId
@@ -41,30 +48,31 @@ namespace RestaurantReviewBusinessLayer
             get => fk_rId;
             set => fk_rId = value;
         }
+
         public Review()
         {
-            sRestaurantName = null;
-            sReviewAddress = null;
-            dRating = 0.0m;
-            sReviewSummary = null;
+            Name = null;
+            Address = null;
+            Rating = 0.0m;
+            Summary = null;
         }
 
         public Review(string _sRestaurantName, string _sReviewAddress, decimal _dRating,
                                     string _sReviewSummary)
         {
-            sRestaurantName = _sRestaurantName;
-            sReviewAddress = _sReviewAddress;
-            dRating = _dRating;
-            sReviewSummary = _sReviewSummary;
+            Name = _sRestaurantName;
+            Address = _sReviewAddress;
+            Summary = _sReviewSummary;
+            Rating = _dRating;
         }
 
         public static explicit operator Review(RestaurantDataLayer.Review rdl)
         {
             Review rv = new Review();
-            rv.RestaurantName = rdl.rName;
-            rv.ReviewAddress = rdl.rAddress;
+            rv.Name = rdl.rName;
+            rv.Address = rdl.rAddress;
             rv.Rating = rdl.rRating;
-            rv.ReviewSummary = rdl.rSummary;
+            rv.Summary = rdl.rSummary;
             return rv;
         }
     }

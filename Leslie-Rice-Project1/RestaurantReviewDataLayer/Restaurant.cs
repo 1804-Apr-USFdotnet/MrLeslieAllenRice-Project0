@@ -26,6 +26,6 @@ namespace RestaurantDataLayer
         public Nullable<decimal> rAvgRating { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

@@ -37,8 +37,10 @@
                 @Html.DisplayFor(modelItem => item.RvSummary)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.RvId}) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.RvId })
+                @Html.ActionLink("Edit", "Edit", "Reviews", new { sRestName = item.RestName, dRating = item.RvRating,
+                    sSummary = item.RvSummary}, null) |
+                @Html.ActionLink("Delete", "Delete", "Reviews"  new { sRestName = item.RestName, dRating = item.RvRating,
+                    sSummary = item.RvSummary }, null)
             </td>
         </tr>
     }

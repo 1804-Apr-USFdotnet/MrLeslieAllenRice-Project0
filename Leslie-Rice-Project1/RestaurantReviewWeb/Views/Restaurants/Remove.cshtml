@@ -1,0 +1,25 @@
+﻿@model RestaurantReviewWeb.Models.Restaurant
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        <h3>Verify Restaurant Deletion</h3>
+        @using (Html.BeginForm("Delete", "Restaurants", FormMethod.Post))
+        {
+            @Html.Label("Name");<br />
+            @Html.TextBox("sRestName");<br /><br />
+            <input type="submit" value="Delete" />
+        }
+    </div>
+</body>
+</html>

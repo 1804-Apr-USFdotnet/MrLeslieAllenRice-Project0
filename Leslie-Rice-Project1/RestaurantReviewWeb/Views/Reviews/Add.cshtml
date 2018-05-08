@@ -1,9 +1,10 @@
-﻿@model RestaurantReviewWeb.Models.Restaurant
+﻿@model RestaurantReviewWeb.Models.Review
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!-- REVIEW ADD VIEW -->
 <!DOCTYPE html>
 
 <html>
@@ -12,6 +13,6 @@
     <title>Add</title>
 </head>
 <body>
-    <h3 align="center">Your restaurant was successfully added to the website! </h3>
+    <h3 align="center">Your review was successfully added to @TempData["rName"]</h3>
 </body>
 </html>

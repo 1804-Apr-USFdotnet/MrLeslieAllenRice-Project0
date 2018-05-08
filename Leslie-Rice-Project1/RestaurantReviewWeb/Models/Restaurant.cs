@@ -29,11 +29,33 @@ namespace RestaurantReviewWeb.Models
             List<Restaurant> lsRest = new List<Restaurant>();
             foreach(var item in RRBusinessLogic.GetTopThreeRestaurants())
             {
+                item.calcAverageRating();
                 lsRest.Add((Restaurant)item);
             }
             return lsRest;
         }
 
+        public static List<Restaurant> SortAscending(List<Restaurant> lsRestaurants)
+        {
+            List<Restaurant> lsRest = new List<Restaurant>();
+            lsRestaurants = GetRestaurants();
+            foreach (var item in RRBusinessLogic.SortAscending(ToBL(lsRestaurants)))
+            {
+                lsRest.Add((Restaurant)item);
+            }
+            return lsRest;
+        }
+
+        public static List<Restaurant> SortDescending(List<Restaurant> lsRestaurants)
+        {
+            List<Restaurant> lsRest = new List<Restaurant>();
+            lsRestaurants = GetRestaurants();
+            foreach (var item in RRBusinessLogic.SortDescending(ToBL(lsRestaurants)))
+            {
+                lsRest.Add((Restaurant)item);
+            }
+            return lsRest;
+        }
 
         public static List<Restaurant> GetRestaurantsContaining(string sRestName)
         {
@@ -65,26 +87,20 @@ namespace RestaurantReviewWeb.Models
             RRBusinessLogic.DeleteRestInDB(sRestName);
         }
 
-        public void AddReview()
-        {
-
-        }
-
         public static void UpdateRestaurant(string sRestName, string sAddress)
         {
             RRBusinessLogic.UpdateRestInDB(sRestName, sAddress);
         }
 
-        public void UpdateReview()
+        private static List<RestaurantReviewBusinessLayer.Restaurant> ToBL
+            (List<Restaurant> r)
         {
-
-        }
-
-        
-
-        public void DeleteReview()
-        {
-
+            var rrbl = new List<RestaurantReviewBusinessLayer.Restaurant>();
+               foreach(var item in r)
+            {
+                rrbl.Add(ToData(item));
+            }
+            return rrbl;
         }
 
         private static List<Restaurant> ToWebList(List<RestaurantReviewBusinessLayer.Restaurant> r)

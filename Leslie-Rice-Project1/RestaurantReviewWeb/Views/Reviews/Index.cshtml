@@ -14,7 +14,7 @@
 <body>
     <h2 align="center">All Reviews</h2>
     <p align="center">
-        @Html.ActionLink("Create New Review", "Create")
+        @Html.ActionLink("Create New Review", "Create", "Reviews")
     </p>
     <table class="table" align="center">
         <tr>
@@ -47,8 +47,8 @@
                 @Html.DisplayFor(modelItem => item.RvSummary)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.RvId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.RvId })
             </td>
         </tr>
     }

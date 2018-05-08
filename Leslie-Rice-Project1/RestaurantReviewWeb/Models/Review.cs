@@ -13,7 +13,6 @@ namespace RestaurantReviewWeb.Models
         public string RestAddress { get; set; }
         public decimal? RvRating { get; set; }
         public string RvSummary { get; set; }
-        //public int FK_RId { get; set; }
 
         public static List<Review> GetReviews()
         {
@@ -24,14 +23,46 @@ namespace RestaurantReviewWeb.Models
             }
             return lsRev;
         }
+        public static void InsertRevIntoDB(string sRestName, string sAddress,
+            decimal dRating, string sRevSummary, int iFk_RId)
+        {
+            RRBusinessLogic.InsertRevIntoDB(sRestName, sAddress, dRating,
+                sRevSummary, iFk_RId);
+        }
+
+        public static void UpdateRevInDB(string sRestName, string sAddress,
+            decimal dRating, string sSummary)
+        {
+            RRBusinessLogic.UpdateRevInDB(sRestName, sAddress, dRating,
+                sSummary);
+        }
+
+        public static void DeleteRevInDB(string sRestName, decimal dRating, string sSummary)
+        {
+            RRBusinessLogic.DeleteRevInDB(sRestName, dRating, sSummary);
+        }
+
+        public static RestaurantReviewBusinessLayer.Review ReviewToBL(Review r)
+        {
+            RestaurantReviewBusinessLayer.Review rev = new RestaurantReviewBusinessLayer.Review
+            {
+                RvId = r.RvId,
+                Name = r.RestName,
+                Address = r.RestAddress,
+                Rating = r.RvRating,
+                Summary = r.RvSummary
+            };
+
+            return rev;
+        }
 
         public static explicit operator Review(RestaurantReviewBusinessLayer.Review rrbl)
         {
             Review rv = new Review();
-            rv.RestName = rrbl.RestaurantName;
-            rv.RestAddress = rrbl.ReviewAddress;
+            rv.RestName = rrbl.Name;
+            rv.RestAddress = rrbl.Address;
             rv.RvRating = rrbl.Rating;
-            rv.RvSummary = rrbl.ReviewSummary;
+            rv.RvSummary = rrbl.Summary;
             return rv;
         }
     }

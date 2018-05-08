@@ -30,6 +30,20 @@ namespace RestaurantReviewBusinessLayer
             return lsReviews;
         }
 
+        public static List<Restaurant> SortAscending(List<Restaurant> lsRestaurants)
+        {
+            List<Restaurant> lsLocalList = new List<Restaurant>();
+            lsLocalList = RestaurantSort.DisplayAllRestaurantsAsc(lsRestaurants);
+            return lsLocalList;
+        }
+
+        public static List<Restaurant> SortDescending(List<Restaurant> lsRestaurants)
+        {
+            List<Restaurant> lsLocalList = new List<Restaurant>();
+            lsLocalList = RestaurantSort.DisplayAllRestaurantDesc(lsRestaurants);
+            return lsLocalList;
+        }
+
         public static List<Restaurant> SearchRestContaining(string sRestName)
         {
             List<Restaurant> lsRest = new List<Restaurant>();
@@ -60,6 +74,32 @@ namespace RestaurantReviewBusinessLayer
             return rest;
         }
 
+        public static RestaurantDataLayer.Review ReviewToDB(Review r)
+        {
+            RestaurantDataLayer.Review rev = new RestaurantDataLayer.Review
+            {
+                rvId = r.RvId,
+                rName = r.Name,
+                rAddress = r.Address,
+                rRating = r.Rating,
+                rSummary = r.Summary
+            };
+
+            return rev;
+        }
+
+        public static Restaurant ToBusiness(RestaurantDataLayer.Restaurant r)
+        {
+            Restaurant rest = new Restaurant()
+            {
+                Id = r.rId,
+                Name = r.rName,
+                Address = r.rAddress,
+                AvgRating = r.rAvgRating
+            };
+            return rest;
+        }
+
         public static List<Restaurant> GetTopThreeRestaurants()
         {
             List<Restaurant> lsTopThree;
@@ -82,21 +122,29 @@ namespace RestaurantReviewBusinessLayer
             RestaurantData.UpdateRestaurantInDB(sRestName, sAddress);
         }
 
-        //public static int InsertRevIntoDB()
-        //{
-
-        //}
-
-
-
-        public static void UpdateRevInDB()
+        public static void InsertRevIntoDB(string sRestName, string sAddress,
+            decimal dRating, string sRevSummary, int iFk_RId)
         {
-
+            RestaurantData.InsertReviewIntoDB(sRestName, sAddress, dRating,
+                sRevSummary, iFk_RId);
         }
 
-        public static void DeleteRevInDB()
+        public static void UpdateRevInDB(string sRestName, string sAddress,
+            decimal dRating, string sSummary)
         {
+            RestaurantData.UpdateReviewInDB(sRestName, sAddress, dRating,
+                sSummary);
+        }
 
+        public static void DeleteRevInDB(string sRestName, decimal dRating, string sSummary)
+        {
+            RestaurantData.DeleteReviewFromDB(sRestName, dRating, sSummary);
+        }
+
+        public static int GetRestaurantId(string sRestName)
+        {
+            int id = RestaurantData.GetRestaurantId(sRestName);
+            return id;
         }
 
         public static void ProgramLogic(string _iUserOption)

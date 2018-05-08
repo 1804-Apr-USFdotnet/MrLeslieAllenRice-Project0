@@ -35,6 +35,24 @@ namespace RestaurantReviewWeb.Controllers
             return View();
         }
 
+        public ActionResult SortAsc(List<Restaurant> lsRest)
+        {
+            List<Restaurant> lsLocal = Restaurant.SortAscending(lsRest);
+            return View(lsLocal);
+        }
+
+        public ActionResult SortDesc(List<Restaurant> lsRest)
+        {
+            List<Restaurant> lsLocal = Restaurant.SortDescending(lsRest);
+            return View(lsLocal);
+        }
+
+        public ActionResult Remove()
+        {
+            return View();
+        }
+
+        //[HttpPost]
         public ActionResult Delete(string sRestName)
         {
             Restaurant.DeleteRestaurant(sRestName);

@@ -8,17 +8,22 @@ namespace RestaurantReviewPresentationLayer
     {
         static void Main(string[] args)
         {
-            string rest = "Popeyes";
-            string address = "8745 Maple St. Tampa Florida 33601";
-
-
-            RRBusinessLogic.DeleteRestInDB(rest, address);
-            List<Restaurant> r = RRBusinessLogic.GetAllRestaurants();
-            foreach(var element in r)
+            List<Restaurant> lsRest = RRBusinessLogic.GetAllRestaurants();
+            foreach(var item in lsRest)
             {
-                Console.WriteLine(element.Name);
-                Console.WriteLine(element.Address);
-                Console.WriteLine(element.AvgRating);
+                Console.WriteLine(item.Name);
+                Console.WriteLine();
+            }
+
+            string rest = "Wendys";
+            RRBusinessLogic.DeleteRestInDB(rest);
+
+            Console.WriteLine("after delete");
+
+            foreach(var item in lsRest)
+            {
+                Console.WriteLine(item.Name);
+                Console.WriteLine();
             }
             Console.Read();
         }

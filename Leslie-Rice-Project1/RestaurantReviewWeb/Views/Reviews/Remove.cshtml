@@ -1,0 +1,29 @@
+﻿@model RestaurantReviewWeb.Models.Review
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        <h3>Verify Review Deletion</h3>
+        @using (Html.BeginForm("Delete", "Reviews", FormMethod.Post))
+        {
+            @Html.Label("Name");<br />
+            @Html.TextBox("sRestName");<br /><br />
+            @Html.Label("Rating");<br />
+            @Html.TextBox("dRating");<br /><br />
+            @Html.Label("Summary");<br />
+            @Html.TextBox("sSummary");<br /><br />
+            <input type="submit" value="Delete" />
+        }
+    </div>
+</body>
+</html>
